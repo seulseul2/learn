@@ -1,5 +1,2 @@
-scores = [80, 89, 99, 83, 90]
-total = 0
-for score in scores:
-    total += score
-print(total/len(scores))
+area = lambda x, y : x * y
+print(area(5, 6))
