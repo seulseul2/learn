@@ -1,2 +1,2 @@
-area = lambda x, y : x * y
-print(area(5, 6))
+a, b = int(input().split())
+print(a)
