@@ -1,2 +1,3 @@
-a, b = int(input().split())
-print(a)
+lst = [1, 5, 4, 2, 3]
+sorted(lst)
+print(lst)
