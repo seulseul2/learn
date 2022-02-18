@@ -1,19 +1,21 @@
-def BruteForce(p, t):
-    i = 0 # t의 검색 인덱스
-    j = 0 # p의 검색 인덱스
-    while i < len(t) and j < len(p):
-        if t[i] != p[j]:
-            i = i-j
-            j = -1
-        i += 1
-        j += 1
-    if j == len(p):
-        return i - len(p)
+import sys
+sys.stdin = open('sample_input (3).txt')
+
+def Palindrome(word):
+    rev = ''
+    for idx in range(len(word)-1, -1, -1):
+        rev += word[idx]
+    if rev == word:
+        return True
     else:
-        return -1
+        return False
 
 T = int(input())
-for i in range(T):
-    p = input()
-    t = input()
-    print(BruteForce(p, t))
+for TC in range(1, T+1):
+    N, M = map(int, input().split())
+    for _ in range(N):
+        word = input()
+        if len(word) != M:
+            continue
+        if Palindrome(word):
+            print('#{} {}' .format(TC, word))
