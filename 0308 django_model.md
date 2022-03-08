@@ -6,6 +6,22 @@ RDB는 Table과 관계된 것. ODB는 데이터분석같은 곳에서 사용합�
 
 ORM은 Object-Relational-Mapping
 
+
+
+먼저,
+
+- id(pk) -> 자동으로 만들어지도록
+- title(text)
+- content(text)
+
+
+
+Installed apps 순서
+
+1. 내가 만든 것
+2. 3rd party에서 제공한 것
+3. default(django)에서 제공하는 것
+
 --------
 
 __Migrations(어떻게 DB에 반영할 수 있을까?)__
@@ -65,7 +81,7 @@ def __str__(self):
 from .models import Article # models.py의 Article 클래스 임포트해주기
 
 def index(request):
-    articles = Article.objects.all()
+    articles = Article.objects.all() # Article 클래스 전체 읽어오기
     context = {
         'articles':article
     }
@@ -86,4 +102,47 @@ def index(request):
 	{% endfor %}
 {% endblock content %}
 ```
+
+--------------
+
+__READ__
+
+read에는 queryset을 return하는거랑 query셋이 아닌애를 return하는 방법이 있다.
+
+그 중 하나가 Article.objects.all() 인 셈.
+
+```bash
+article = Article.objects.get(id=1) # article 변수를 지정
+article = Article.objects.get(content='django!!') # 되긴하는데 중복되면 오류
+article = Article.objects.get(pk=3) # 그래서 이렇게 unique한 값을 통해서 찾아야 함
+```
+
+__content='django!!'처럼 중복되는 값으로 호출하고 싶다면?__
+
+```bash
+Article.objects.filter(content='django!!') # django!!인 content 전부
+Article.object.filter(content__contains='django') # django 포함 전부
+```
+
+지우고 싶을 때
+
+```bash
+article.delete() # 그냥 메서드 써서 지우면 됨. 해당 튜플 삭제
+```
+
+--------------------
+
+__관리자 아이디 생성__
+
+```bash
+python manage.py createsuperuser
+```
+
+admin.py에 등록해준 이후부터는 왼쪽에 Articles가 추가된다.
+
+list display : models에 필요한것들 추가해줌.
+
+![image-20220308170941747](0308 django_model.assets/image-20220308170941747.png)
+
+이런 식으로 필요한 column을 만들 수 있다.
 
