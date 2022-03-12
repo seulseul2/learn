@@ -46,7 +46,12 @@ python manage.py migrate # 앱들을 DB에 반영하는 방법
 
 db.sqlite3에서 articles_article이 만들어졌는지 확인하기.
 
-이후,
+이후, 2가지 라이브러리 설치
+
+```python
+pip install ipython
+pip install django-extensions
+```
 
 ```bash
 python manage.py shell_plus
