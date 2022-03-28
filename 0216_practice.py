@@ -1,21 +1,23 @@
 import sys
-sys.stdin = open('sample_input (3).txt')
+input = sys.stdin.readline
 
-def Palindrome(word):
-    rev = ''
-    for idx in range(len(word)-1, -1, -1):
-        rev += word[idx]
-    if rev == word:
-        return True
-    else:
+def isPrime(n):
+    if n < 2:
         return False
+    else:
+        for i in range(2, int(n**0.5)+1):
+            if n % i == 0:
+                return False
+        return True
 
-T = int(input())
-for TC in range(1, T+1):
-    N, M = map(int, input().split())
-    for _ in range(N):
-        word = input()
-        if len(word) != M:
-            continue
-        if Palindrome(word):
-            print('#{} {}' .format(TC, word))
+lst = []
+for i in range(104):
+    if isPrime(i):
+        lst.append(i)
+print(lst)
+
+# x = int(input())
+# for j in range(len(lst)-1):
+#     if lst[j]*lst[j+1] > x:
+#         print(lst[j]*lst[j+1])
+#         break
